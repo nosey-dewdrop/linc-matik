@@ -1,1 +1,1 @@
-# lin-matik
+# linc-matik
