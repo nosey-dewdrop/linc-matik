@@ -1,0 +1,37 @@
+# python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# environment variables
+.env
+.env.local
+
+# personal notes
+instructions.md
+notes.md
+TODO.md
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# logs
+*.log
+
+# test files
+test.py
