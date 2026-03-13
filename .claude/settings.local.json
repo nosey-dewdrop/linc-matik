@@ -17,7 +17,12 @@
       "Bash(railway login:*)",
       "Bash(git push:*)",
       "Bash(cd /Users/damummyphus/linc-matik/frontend && npm run build 2>&1 | tail -20)",
-      "Bash(npx vercel:*)"
+      "Bash(npx vercel:*)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" https://web-production-efe3f.up.railway.app/)",
+      "Bash(curl -s -X POST https://web-production-efe3f.up.railway.app/generate-linc -H \"Content-Type: application/json\" -d '{\"action\":\"initial\",\"statement\":\"selam benim adım damla\"}' 2>&1 | head -200)",
+      "Bash(curl -s https://web-production-efe3f.up.railway.app/ 2>&1)",
+      "Bash(curl -s -X POST https://web-production-efe3f.up.railway.app/generate-linc -H \"Content-Type: application/json\" -d '{\"action\":\"initial\",\"statement\":\"test\"}' 2>&1)",
+      "Bash(curl -s -X POST https://web-production-efe3f.up.railway.app/generate-linc -H \"Content-Type: application/json\" -d '{\"action\":\"initial\",\"statement\":\"selam benim adım damla\"}' 2>&1 | head -100)"
     ]
   }
 }
