@@ -1,6 +1,8 @@
 import './App.css';
 import { useState, useEffect, useCallback } from 'react';
 
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5002';
+
 /* ════ TROLL PERSONAS ════ */
 const TROLLS = [
   { name: 'Toxic Teyze',     handle: '@toxic_teyze',     initials: 'TT', gradient: 'linear-gradient(135deg, #e84580, #d42d6a)' },
@@ -10,22 +12,31 @@ const TROLLS = [
   { name: 'Bilmiş Burcu',    handle: '@bilmis_burcu',    initials: 'BB', gradient: 'linear-gradient(135deg, #f472a8, #e84580)' },
 ];
 
-/* ════ KİTAP & SÖZLER ════ */
+/* ════ ÖNEMLİ KİTAPLAR ════ */
 const BOOKS = [
-  { title: 'Tartışma Sanatı', author: 'Arthur Schopenhauer', review: 'İnsanların argüman yerine kirli taktikler kullandığını anlatan klasik. Her tartışmaya hazırlıklı girmek için.' },
-  { title: 'Böyle Buyurdu Zerdüşt', author: 'Friedrich Nietzsche', review: 'Güçlü olmanın yolu acıdan kaçmak değil, onu kucaklamaktır. Mental dayanıklılığın manifestosu.' },
-  { title: 'Budala', author: 'Fyodor Dostoyevski', review: 'Prens Mışkin — iyi olmanın bedeli. Dünya iyi insanları nasıl ezer? Bu kitap cevap.' },
-  { title: 'Quiet', author: 'Susan Cain', review: 'İçe dönüklerin gücü. Sessiz kalanların aslında ne kadar güçlü olduğunu anlatan araştırma.' },
-  { title: '48 Laws of Power', author: 'Robert Greene', review: 'Güç dinamiklerini anlamak, manipülasyondan korunmak için. Savunma amaçlı okunmalı.' },
+  { title: 'Tartışma Sanatı', author: 'Arthur Schopenhauer', review: '38 kirli tartışma taktiği. İnsanlar haklı olmak için değil, kazanmak için tartışır. Bu kitabı okuyan bir daha hazırlıksız yakalanmaz.' },
+  { title: 'Meditations', author: 'Marcus Aurelius', review: 'Roma imparatoru kendine yazdığı notlar. 2000 yıl önce yazılmış ama bugün Twitter\'da yazılabilirdi. "Bugün kötü insanlarla karşılaşacaksın" diye başlıyor.' },
+  { title: 'Budala', author: 'Fyodor Dostoyevski', review: 'Prens Mışkin dünyanın en iyi insanı. Suçu bu. Dünya onu yiyor. Okuyunca anlıyorsun — iyilik bir savunmasızlık mı?' },
+  { title: 'No Longer Human', author: 'Osamu Dazai', review: 'İnsanlara uyum sağlamaya çalışan birinin çöküşü. Herkesin içinde bir parça Yozo var. Pink Floyd\'un The Wall\'u kitap olsaydı bu olurdu.' },
+  { title: 'The Art of War', author: 'Sun Tzu', review: 'Savaş kitabı değil, strateji kitabı. "En büyük zafer savaşmadan kazanılandır." Trollerle uğraşırken de geçerli.' },
+  { title: 'Böyle Buyurdu Zerdüşt', author: 'Friedrich Nietzsche', review: 'Güçlü olmanın yolu acıdan kaçmak değil, onu kucaklamak. "Seni öldürmeyen şey güçlendirir" burada yazıyor ama context\'i herkes yanlış anlıyor.' },
+  { title: 'The Courage to Be Disliked', author: 'Ichiro Kishimi', review: 'Adler psikolojisi üzerinden — başkalarının onayına neden ihtiyaç duymuyorsun. Japon felsefesi ile batı psikolojisinin kesişimi.' },
 ];
 
+/* ════ ÖNEMLİ SÖZLER ════ */
 const QUOTES = [
+  { text: 'Bugün kötü niyetli, kıskanç, nankör insanlarla karşılaşacaksın. Ama şaşırma — bunların hiçbiri sana yapılmıyor. Onlar başka türlüsünü bilmiyor.', author: 'Marcus Aurelius, Meditations' },
   { text: 'Asla bir domuzla güreşme. İkiniz de çamur içinde kalırsınız ama o bundan keyif alır.', author: 'George Bernard Shaw' },
-  { text: 'Seni kızdıran her şey, seni kontrol ediyor.', author: 'Miyamoto Musashi' },
+  { text: 'All in all it was all just bricks in the wall.', author: 'Pink Floyd, The Wall' },
+  { text: 'Seni kızdıran her şey, seni kontrol ediyor. Öfken senin zincirin.', author: 'Miyamoto Musashi' },
+  { text: 'I\'m not okay, and that\'s okay. We\'re all just trying to figure it out.', author: 'Radiohead, OK Computer ruhu' },
   { text: 'En iyi intikam, onlara benzememektir.', author: 'Marcus Aurelius' },
-  { text: 'Başkalarının sana ne düşündüğü senin işin değil.', author: 'Eleanor Roosevelt' },
-  { text: 'Güçlü insanlar başkalarını küçümsemez, ayağa kaldırır.', author: 'Michael P. Watson' },
-  { text: 'Kimse seni aşağı hissettiremez, sen izin vermeden.', author: 'Eleanor Roosevelt' },
+  { text: 'Herkes ışığında güneşin dostu. Karanlıkta yanında kalanları say.', author: 'Mevlana' },
+  { text: 'Bir gila canavarıysam, seni yerim. Sana kötülük yapmak istediğimden değil — yapısı bu. İnsanlar da öyle.', author: 'Nietzsche yorumu' },
+  { text: 'How can you have any pudding if you don\'t eat your meat?', author: 'Pink Floyd, The Wall' },
+  { text: 'Kimse seni senin izinin olmadan aşağı hissettiremez.', author: 'Eleanor Roosevelt' },
+  { text: 'The loneliest people are the kindest. The saddest people smile the brightest.', author: 'Oscar Wilde' },
+  { text: 'Ne kadar bilirsen bil, söylediklerin karşındakinin anlayabileceği kadardır.', author: 'Mevlana' },
 ];
 
 const FLOAT_EMOJIS = [
@@ -60,34 +71,50 @@ function useTheme() {
   return [dark, useCallback(() => setDark(d => !d), [])];
 }
 
-/* ════ TYPING TEXT ════ */
-function TypingText({ text }) {
-  const [displayed, setDisplayed] = useState('');
-  const [done, setDone] = useState(false);
-
-  useEffect(() => {
-    let i = 0;
-    setDisplayed('');
-    setDone(false);
-    const t = setInterval(() => {
-      setDisplayed(text.slice(0, i));
-      i++;
-      if (i > text.length) { clearInterval(t); setDone(true); }
-    }, 28);
-    return () => clearInterval(t);
-  }, [text]);
-
-  return <span>{displayed}{!done && <span className="typing-cursor" />}</span>;
-}
-
 /* ════ LOADING DOTS ════ */
 function LoadingDots() {
   return <span className="loading-dots"><span /><span /><span /></span>;
 }
 
+/* ════ ÖNEMLİ SÖZLER PAGE ════ */
+function QuotesPage({ onBack }) {
+  return (
+    <div className="container quotes-page">
+      <button className="back-btn" onClick={onBack}>← geri</button>
+      <h1 className="quotes-title"><em>önemli sözler</em></h1>
+      <div className="quotes-divider" />
+      {QUOTES.map((q, i) => (
+        <div key={i} className="q-item">
+          <div className="q-text">"{q.text}"</div>
+          <div className="q-author">— {q.author}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ════ ÖNEMLİ KİTAPLAR PAGE ════ */
+function BooksPage({ onBack }) {
+  return (
+    <div className="container quotes-page">
+      <button className="back-btn" onClick={onBack}>← geri</button>
+      <h1 className="quotes-title"><em>önemli kitaplar</em></h1>
+      <div className="quotes-divider" />
+      {BOOKS.map((b, i) => (
+        <div key={i} className="q-item">
+          <div className="q-book-title">{b.title}</div>
+          <div className="q-author">{b.author}</div>
+          <div className="q-review">{b.review}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 /* ════ APP ════ */
 function App() {
   const [dark, toggleTheme] = useTheme();
+  const [page, setPage] = useState('main'); // 'main' | 'quotes' | 'books'
   const [input, setInput] = useState('');
   const [lincler, setLincler] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -95,7 +122,6 @@ function App() {
   const [replyInput, setReplyInput] = useState('');
   const [analysis, setAnalysis] = useState(null);
   const [visibleComments, setVisibleComments] = useState(0);
-  const [showPanel, setShowPanel] = useState(false);
 
   // Staggered reveal
   useEffect(() => {
@@ -110,7 +136,7 @@ function App() {
     setLoading(true);
     setVisibleComments(0);
     try {
-      const res = await fetch('http://localhost:5002/generate-linc', {
+      const res = await fetch('${API_URL}/generate-linc', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'initial', statement: input }),
@@ -133,7 +159,7 @@ function App() {
     const linc = lincler.find(l => l.id === id);
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5002/generate-linc', {
+      const res = await fetch('${API_URL}/generate-linc', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'reply', linc_text: linc.text, user_reply: replyInput }),
@@ -160,7 +186,7 @@ function App() {
     if (!lincler.length) return;
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5002/generate-linc', {
+      const res = await fetch('${API_URL}/generate-linc', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'analyze', conversation: lincler.flatMap(l => l.conversation) }),
@@ -182,8 +208,12 @@ function App() {
     <div className="app">
       <div className="dot-bg" />
       <FloatingEmojis />
+
       <div className="top-actions">
-        <button className="top-btn" onClick={() => setShowPanel(p => !p)} aria-label="Kitap & Sözler">
+        <button className="top-btn" onClick={() => setPage('quotes')} aria-label="Sözler">
+          💬
+        </button>
+        <button className="top-btn" onClick={() => setPage('books')} aria-label="Kitaplar">
           📚
         </button>
         <button className="top-btn" onClick={toggleTheme} aria-label="Toggle theme">
@@ -191,145 +221,114 @@ function App() {
         </button>
       </div>
 
-      {/* ─── KİTAP & SÖZLER PANELİ ─── */}
-      {showPanel && (
-        <div className="side-panel">
-          <div className="panel-overlay" onClick={() => setShowPanel(false)} />
-          <div className="panel-content">
-            <div className="panel-header">
-              <h2>zorbalıkla mücadele</h2>
-              <button className="panel-close" onClick={() => setShowPanel(false)}>×</button>
+      {page === 'quotes' && <QuotesPage onBack={() => setPage('main')} />}
+      {page === 'books' && <BooksPage onBack={() => setPage('main')} />}
+
+      {page === 'main' && (
+        <div className="container">
+
+          {/* ─── LANDING ─── */}
+          {lincler.length === 0 && !analysis && (
+            <div className="landing">
+              <div className="brand-icon">💐</div>
+              <h1 className="brand-title">🦋 <em>linçmatik</em> 🎀</h1>
+              <span className="ribbon-badge">mental dayanıklılık antrenmanı</span>
+              <div className="input-area">
+                <textarea
+                  className="main-input"
+                  placeholder="buraya yaz..."
+                  value={input}
+                  onChange={e => setInput(e.target.value)}
+                  disabled={loading}
+                />
+                <button className="submit-btn" onClick={handleInitial} disabled={loading}>
+                  {loading ? <LoadingDots /> : 'bekliyorum!!'}
+                </button>
+              </div>
             </div>
+          )}
 
-            <div className="panel-section">
-              <h3>📖 kitap önerileri</h3>
-              {BOOKS.map((b, i) => (
-                <div key={i} className="book-card">
-                  <div className="book-title">{b.title}</div>
-                  <div className="book-author">{b.author}</div>
-                  <div className="book-review">{b.review}</div>
-                </div>
-              ))}
-            </div>
-
-            <div className="panel-section">
-              <h3>💬 sözler</h3>
-              {QUOTES.map((q, i) => (
-                <div key={i} className="quote-card">
-                  <p className="quote-text">"{q.text}"</p>
-                  <span className="quote-author">— {q.author}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-
-      <div className="container">
-
-        {/* ─── LANDING ─── */}
-        {lincler.length === 0 && !analysis && (
-          <div className="landing">
-            <div className="brand-icon">💐</div>
-            <h1 className="brand-title">🦋 <em>linçmatik</em> 🎀</h1>
-            <span className="ribbon-badge">mental dayanıklılık antrenmanı</span>
-            <div className="input-area">
-              <textarea
-                className="main-input"
-                placeholder="buraya yaz..."
-                value={input}
-                onChange={e => setInput(e.target.value)}
-                disabled={loading}
-              />
-              <button className="submit-btn" onClick={handleInitial} disabled={loading}>
-                {loading ? <LoadingDots /> : 'bekliyorum!!'}
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* ─── LINC CARDS ─── */}
-        {lincler.length > 0 && !analysis && (
-          <>
-          <div className="linc-cards">
-            {lincler.slice(0, visibleComments).map((linc, i) => (
-                <div key={linc.id} className="linc-card vis" style={{ animationDelay: `${i * 0.1}s` }}>
-                  <div className="card-header" onClick={() => setExpandedId(expandedId === linc.id ? null : linc.id)}>
-                    <div className="card-meta">
-                      <div className="troll-name">{linc.troll.name}</div>
-                      <div className="troll-handle">{linc.troll.handle}</div>
+          {/* ─── LINC CARDS ─── */}
+          {lincler.length > 0 && !analysis && (
+            <>
+              <div className="linc-cards">
+                {lincler.slice(0, visibleComments).map((linc, i) => (
+                  <div key={linc.id} className="linc-card vis" style={{ animationDelay: `${i * 0.1}s` }}>
+                    <div className="card-header" onClick={() => setExpandedId(expandedId === linc.id ? null : linc.id)}>
+                      <div className="card-meta">
+                        <div className="troll-name">{linc.troll.name}</div>
+                        <div className="troll-handle">{linc.troll.handle}</div>
+                      </div>
+                      <button className="card-expand-btn">{expandedId === linc.id ? '−' : '+'}</button>
                     </div>
-                    <button className="card-expand-btn">{expandedId === linc.id ? '−' : '+'}</button>
-                  </div>
-                  <div className="card-text">{linc.text}</div>
+                    <div className="card-text">{linc.text}</div>
 
-                  {expandedId === linc.id && (
-                    <div className="card-expanded">
-                      {linc.conversation.length > 1 && (
-                        <div className="conversation">
-                          {linc.conversation.slice(1).map((msg, idx) => (
-                            <div key={idx} className={`msg ${msg.role === 'Sen' ? 'user' : 'ai'}`}>
-                              <strong>{msg.role}</strong>{msg.text}
-                            </div>
-                          ))}
+                    {expandedId === linc.id && (
+                      <div className="card-expanded">
+                        {linc.conversation.length > 1 && (
+                          <div className="conversation">
+                            {linc.conversation.slice(1).map((msg, idx) => (
+                              <div key={idx} className={`msg ${msg.role === 'Sen' ? 'user' : 'ai'}`}>
+                                <strong>{msg.role}</strong>{msg.text}
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                        <div className="reply-area">
+                          <input
+                            type="text"
+                            placeholder="cevap yaz..."
+                            value={replyInput}
+                            onChange={e => setReplyInput(e.target.value)}
+                            onKeyDown={e => e.key === 'Enter' && handleReply(linc.id)}
+                            disabled={loading}
+                          />
+                          <button onClick={() => handleReply(linc.id)} disabled={loading}>
+                            {loading ? <LoadingDots /> : 'gönder'}
+                          </button>
                         </div>
-                      )}
-                      <div className="reply-area">
-                        <input
-                          type="text"
-                          placeholder="cevap yaz..."
-                          value={replyInput}
-                          onChange={e => setReplyInput(e.target.value)}
-                          onKeyDown={e => e.key === 'Enter' && handleReply(linc.id)}
-                          disabled={loading}
-                        />
-                        <button onClick={() => handleReply(linc.id)} disabled={loading}>
-                          {loading ? <LoadingDots /> : 'gönder'}
+                        <button className="remove-btn" onClick={() => handleRemove(linc.id)}>
+                          uğraşamam (sil)
                         </button>
                       </div>
-                      <button className="remove-btn" onClick={() => handleRemove(linc.id)}>
-                        uğraşamam (sil)
-                      </button>
-                    </div>
-                  )}
-                </div>
-            ))}
-
-          </div>
-            {visibleComments === lincler.length && (
-              <div className="bottom-actions">
-                <button className="action-button" onClick={handleAnalyze} disabled={loading}>
-                  {loading ? <LoadingDots /> : 'tümünü analiz et'}
-                </button>
-                <button className="action-button secondary" onClick={handleReset}>yeniden başla</button>
+                    )}
+                  </div>
+                ))}
               </div>
-            )}
-        </>
-        )}
+              {visibleComments === lincler.length && (
+                <div className="bottom-actions">
+                  <button className="action-button" onClick={handleAnalyze} disabled={loading}>
+                    {loading ? <LoadingDots /> : 'tümünü analiz et'}
+                  </button>
+                  <button className="action-button secondary" onClick={handleReset}>yeniden başla</button>
+                </div>
+              )}
+            </>
+          )}
 
-        {/* ─── ANALYSIS ─── */}
-        {analysis && (
-          <div className="analysis-box">
-            <h2>psikolojik analiz</h2>
-            <div className="analysis-section">
-              <h3>sizin durumunuz</h3>
-              <p>{analysis.kullanici_durum}</p>
+          {/* ─── ANALYSIS ─── */}
+          {analysis && (
+            <div className="analysis-box">
+              <h2>psikolojik analiz</h2>
+              <div className="analysis-section">
+                <h3>sizin durumunuz</h3>
+                <p>{analysis.kullanici_durum}</p>
+              </div>
+              <div className="analysis-section">
+                <h3>eleştirenlerin durumu</h3>
+                <p>{analysis.elestiren_durum}</p>
+              </div>
+              <div className="analysis-section">
+                <h3>genel değerlendirme</h3>
+                <p>{analysis.genel}</p>
+              </div>
+              <div className="bottom-actions">
+                <button className="action-button" onClick={handleReset}>yeni simülasyon</button>
+              </div>
             </div>
-            <div className="analysis-section">
-              <h3>eleştirenlerin durumu</h3>
-              <p>{analysis.elestiren_durum}</p>
-            </div>
-            <div className="analysis-section">
-              <h3>genel değerlendirme</h3>
-              <p>{analysis.genel}</p>
-            </div>
-            <div className="bottom-actions">
-              <button className="action-button" onClick={handleReset}>yeni simülasyon</button>
-            </div>
-          </div>
-        )}
-      </div>
-
+          )}
+        </div>
+      )}
     </div>
   );
 }

@@ -7,7 +7,10 @@
       "Bash(gh repo:*)",
       "WebFetch(domain:raw.githubusercontent.com)",
       "Bash(lsof -ti:5002 | xargs kill -9 2>/dev/null; lsof -ti:3000 | xargs kill -9 2>/dev/null; echo \"killed\")",
-      "Bash(sleep 4 && curl -s http://localhost:5002/health)"
+      "Bash(sleep 4 && curl -s http://localhost:5002/health)",
+      "Bash(source venv/bin/activate && pip install gunicorn 2>&1 | tail -3)",
+      "Bash(source /Users/damummyphus/linc-matik/venv/bin/activate && pip install gunicorn 2>&1 | tail -3e)",
+      "Bash(source /Users/damummyphus/linc-matik/venv/bin/activate && pip freeze > /Users/damummyphus/linc-matik/requirements.txti bugün k)"
     ]
   }
 }
