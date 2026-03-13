@@ -14,29 +14,19 @@ const TROLLS = [
 
 /* ════ ÖNEMLİ KİTAPLAR ════ */
 const BOOKS = [
-  { title: 'Tartışma Sanatı', author: 'Arthur Schopenhauer', review: '38 kirli tartışma taktiği. İnsanlar haklı olmak için değil, kazanmak için tartışır. Bu kitabı okuyan bir daha hazırlıksız yakalanmaz.' },
-  { title: 'Meditations', author: 'Marcus Aurelius', review: 'Roma imparatoru kendine yazdığı notlar. 2000 yıl önce yazılmış ama bugün Twitter\'da yazılabilirdi. "Bugün kötü insanlarla karşılaşacaksın" diye başlıyor.' },
-  { title: 'Budala', author: 'Fyodor Dostoyevski', review: 'Prens Mışkin dünyanın en iyi insanı. Suçu bu. Dünya onu yiyor. Okuyunca anlıyorsun — iyilik bir savunmasızlık mı?' },
-  { title: 'No Longer Human', author: 'Osamu Dazai', review: 'İnsanlara uyum sağlamaya çalışan birinin çöküşü. Herkesin içinde bir parça Yozo var. Pink Floyd\'un The Wall\'u kitap olsaydı bu olurdu.' },
-  { title: 'The Art of War', author: 'Sun Tzu', review: 'Savaş kitabı değil, strateji kitabı. "En büyük zafer savaşmadan kazanılandır." Trollerle uğraşırken de geçerli.' },
-  { title: 'Böyle Buyurdu Zerdüşt', author: 'Friedrich Nietzsche', review: 'Güçlü olmanın yolu acıdan kaçmak değil, onu kucaklamak. "Seni öldürmeyen şey güçlendirir" burada yazıyor ama context\'i herkes yanlış anlıyor.' },
-  { title: 'The Courage to Be Disliked', author: 'Ichiro Kishimi', review: 'Adler psikolojisi üzerinden — başkalarının onayına neden ihtiyaç duymuyorsun. Japon felsefesi ile batı psikolojisinin kesişimi.' },
+  { title: 'Tartışma Sanatı', author: 'Arthur Schopenhauer', review: '' },
+  { title: 'Kendime Düşünceler', author: 'Marcus Aurelius', review: '' },
+  { title: 'Budala', author: 'Fyodor Dostoyevski', review: '' },
+  { title: 'The Art of War', author: 'Sun Tzu', review: '' },
+  { title: 'Böyle Buyurdu Zerdüşt', author: 'Friedrich Nietzsche', review: '' },
+  { title: 'The Courage to Be Disliked', author: 'Ichiro Kishimi', review: '' },
+  { title: '48 Laws of Power', author: 'Robert Greene', review: '' },
+  { title: 'Prens', author: 'Niccolò Machiavelli', review: '' },
 ];
 
 /* ════ ÖNEMLİ SÖZLER ════ */
 const QUOTES = [
-  { text: 'Bugün kötü niyetli, kıskanç, nankör insanlarla karşılaşacaksın. Ama şaşırma — bunların hiçbiri sana yapılmıyor. Onlar başka türlüsünü bilmiyor.', author: 'Marcus Aurelius, Meditations' },
   { text: 'Asla bir domuzla güreşme. İkiniz de çamur içinde kalırsınız ama o bundan keyif alır.', author: 'George Bernard Shaw' },
-  { text: 'All in all it was all just bricks in the wall.', author: 'Pink Floyd, The Wall' },
-  { text: 'Seni kızdıran her şey, seni kontrol ediyor. Öfken senin zincirin.', author: 'Miyamoto Musashi' },
-  { text: 'I\'m not okay, and that\'s okay. We\'re all just trying to figure it out.', author: 'Radiohead, OK Computer ruhu' },
-  { text: 'En iyi intikam, onlara benzememektir.', author: 'Marcus Aurelius' },
-  { text: 'Herkes ışığında güneşin dostu. Karanlıkta yanında kalanları say.', author: 'Mevlana' },
-  { text: 'Bir gila canavarıysam, seni yerim. Sana kötülük yapmak istediğimden değil — yapısı bu. İnsanlar da öyle.', author: 'Nietzsche yorumu' },
-  { text: 'How can you have any pudding if you don\'t eat your meat?', author: 'Pink Floyd, The Wall' },
-  { text: 'Kimse seni senin izinin olmadan aşağı hissettiremez.', author: 'Eleanor Roosevelt' },
-  { text: 'The loneliest people are the kindest. The saddest people smile the brightest.', author: 'Oscar Wilde' },
-  { text: 'Ne kadar bilirsen bil, söylediklerin karşındakinin anlayabileceği kadardır.', author: 'Mevlana' },
 ];
 
 const FLOAT_EMOJIS = [
@@ -83,6 +73,7 @@ function QuotesPage({ onBack }) {
       <button className="back-btn" onClick={onBack}>← geri</button>
       <h1 className="quotes-title"><em>önemli sözler</em></h1>
       <div className="quotes-divider" />
+      {QUOTES.length === 0 && <div className="q-empty">yakında eklenecek...</div>}
       {QUOTES.map((q, i) => (
         <div key={i} className="q-item">
           <div className="q-text">"{q.text}"</div>
@@ -100,6 +91,7 @@ function BooksPage({ onBack }) {
       <button className="back-btn" onClick={onBack}>← geri</button>
       <h1 className="quotes-title"><em>önemli kitaplar</em></h1>
       <div className="quotes-divider" />
+      {BOOKS.length === 0 && <div className="q-empty">yakında eklenecek...</div>}
       {BOOKS.map((b, i) => (
         <div key={i} className="q-item">
           <div className="q-book-title">{b.title}</div>

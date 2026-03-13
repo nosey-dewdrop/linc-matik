@@ -118,6 +118,15 @@
   margin-top: 6px;
 }
 
+.q-empty {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--tx3);
+  padding: 40px 0;
+  text-align: center;
+}
+
 /* ════ CONTAINER ════ */
 .container {
   max-width: 860px;
