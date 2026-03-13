@@ -14,7 +14,10 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(railway --version)",
-      "Bash(railway login:*)"
+      "Bash(railway login:*)",
+      "Bash(git push:*)",
+      "Bash(cd /Users/damummyphus/linc-matik/frontend && npm run build 2>&1 | tail -20)",
+      "Bash(npx vercel:*)"
     ]
   }
 }
