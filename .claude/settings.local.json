@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(source venv/bin/activate && pip install -q flask flask-cors anthropic python-dotenv 2>&1 | tail -5)",
+      "Bash(sleep 3 && curl -s http://localhost:5002/health)",
+      "WebFetch(domain:nosey-dewdrop.github.io)",
+      "Bash(gh repo:*)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(lsof -ti:5002 | xargs kill -9 2>/dev/null; lsof -ti:3000 | xargs kill -9 2>/dev/null; echo \"killed\")",
+      "Bash(sleep 4 && curl -s http://localhost:5002/health)"
+    ]
+  }
+}
