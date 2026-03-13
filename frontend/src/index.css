@@ -111,6 +111,10 @@ body {
   background-image: radial-gradient(circle, var(--l3) 1px, transparent 1px);
   background-size: 36px 36px;
   opacity: 0.18;
+  transition: opacity var(--ease);
+}
+[data-theme="dark"] .dot-bg {
+  opacity: 0.06;
 }
 
 /* ════ GRAIN OVERLAY ════ */

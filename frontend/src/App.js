@@ -10,6 +10,24 @@ const TROLLS = [
   { name: 'Bilmiş Burcu',    handle: '@bilmis_burcu',    initials: 'BB', gradient: 'linear-gradient(135deg, #f472a8, #e84580)' },
 ];
 
+/* ════ KİTAP & SÖZLER ════ */
+const BOOKS = [
+  { title: 'Tartışma Sanatı', author: 'Arthur Schopenhauer', review: 'İnsanların argüman yerine kirli taktikler kullandığını anlatan klasik. Her tartışmaya hazırlıklı girmek için.' },
+  { title: 'Böyle Buyurdu Zerdüşt', author: 'Friedrich Nietzsche', review: 'Güçlü olmanın yolu acıdan kaçmak değil, onu kucaklamaktır. Mental dayanıklılığın manifestosu.' },
+  { title: 'Budala', author: 'Fyodor Dostoyevski', review: 'Prens Mışkin — iyi olmanın bedeli. Dünya iyi insanları nasıl ezer? Bu kitap cevap.' },
+  { title: 'Quiet', author: 'Susan Cain', review: 'İçe dönüklerin gücü. Sessiz kalanların aslında ne kadar güçlü olduğunu anlatan araştırma.' },
+  { title: '48 Laws of Power', author: 'Robert Greene', review: 'Güç dinamiklerini anlamak, manipülasyondan korunmak için. Savunma amaçlı okunmalı.' },
+];
+
+const QUOTES = [
+  { text: 'Asla bir domuzla güreşme. İkiniz de çamur içinde kalırsınız ama o bundan keyif alır.', author: 'George Bernard Shaw' },
+  { text: 'Seni kızdıran her şey, seni kontrol ediyor.', author: 'Miyamoto Musashi' },
+  { text: 'En iyi intikam, onlara benzememektir.', author: 'Marcus Aurelius' },
+  { text: 'Başkalarının sana ne düşündüğü senin işin değil.', author: 'Eleanor Roosevelt' },
+  { text: 'Güçlü insanlar başkalarını küçümsemez, ayağa kaldırır.', author: 'Michael P. Watson' },
+  { text: 'Kimse seni aşağı hissettiremez, sen izin vermeden.', author: 'Eleanor Roosevelt' },
+];
+
 const FLOAT_EMOJIS = [
   '🎀', '🌸', '💜', '✨', '🦋', '💐', '🌙', '💫', '🌷', '👾',
   '🎀', '✨', '💜', '🌸', '🦋', '🌙', '💫', '🌷', '💐', '✨',
@@ -77,6 +95,7 @@ function App() {
   const [replyInput, setReplyInput] = useState('');
   const [analysis, setAnalysis] = useState(null);
   const [visibleComments, setVisibleComments] = useState(0);
+  const [showPanel, setShowPanel] = useState(false);
 
   // Staggered reveal
   useEffect(() => {
@@ -163,9 +182,48 @@ function App() {
     <div className="app">
       <div className="dot-bg" />
       <FloatingEmojis />
-      <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
-        {dark ? '☀️' : '🌙'}
-      </button>
+      <div className="top-actions">
+        <button className="top-btn" onClick={() => setShowPanel(p => !p)} aria-label="Kitap & Sözler">
+          📚
+        </button>
+        <button className="top-btn" onClick={toggleTheme} aria-label="Toggle theme">
+          {dark ? '☀️' : '🌙'}
+        </button>
+      </div>
+
+      {/* ─── KİTAP & SÖZLER PANELİ ─── */}
+      {showPanel && (
+        <div className="side-panel">
+          <div className="panel-overlay" onClick={() => setShowPanel(false)} />
+          <div className="panel-content">
+            <div className="panel-header">
+              <h2>zorbalıkla mücadele</h2>
+              <button className="panel-close" onClick={() => setShowPanel(false)}>×</button>
+            </div>
+
+            <div className="panel-section">
+              <h3>📖 kitap önerileri</h3>
+              {BOOKS.map((b, i) => (
+                <div key={i} className="book-card">
+                  <div className="book-title">{b.title}</div>
+                  <div className="book-author">{b.author}</div>
+                  <div className="book-review">{b.review}</div>
+                </div>
+              ))}
+            </div>
+
+            <div className="panel-section">
+              <h3>💬 sözler</h3>
+              {QUOTES.map((q, i) => (
+                <div key={i} className="quote-card">
+                  <p className="quote-text">"{q.text}"</p>
+                  <span className="quote-author">— {q.author}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="container">
 
@@ -192,6 +250,7 @@ function App() {
 
         {/* ─── LINC CARDS ─── */}
         {lincler.length > 0 && !analysis && (
+          <>
           <div className="linc-cards">
             {lincler.slice(0, visibleComments).map((linc, i) => (
                 <div key={linc.id} className="linc-card vis" style={{ animationDelay: `${i * 0.1}s` }}>
@@ -206,13 +265,15 @@ function App() {
 
                   {expandedId === linc.id && (
                     <div className="card-expanded">
-                      <div className="conversation">
-                        {linc.conversation.map((msg, idx) => (
-                          <div key={idx} className={`msg ${msg.role === 'Sen' ? 'user' : 'ai'}`}>
-                            <strong>{msg.role}</strong>{msg.text}
-                          </div>
-                        ))}
-                      </div>
+                      {linc.conversation.length > 1 && (
+                        <div className="conversation">
+                          {linc.conversation.slice(1).map((msg, idx) => (
+                            <div key={idx} className={`msg ${msg.role === 'Sen' ? 'user' : 'ai'}`}>
+                              <strong>{msg.role}</strong>{msg.text}
+                            </div>
+                          ))}
+                        </div>
+                      )}
                       <div className="reply-area">
                         <input
                           type="text"
@@ -234,6 +295,7 @@ function App() {
                 </div>
             ))}
 
+          </div>
             {visibleComments === lincler.length && (
               <div className="bottom-actions">
                 <button className="action-button" onClick={handleAnalyze} disabled={loading}>
@@ -242,7 +304,7 @@ function App() {
                 <button className="action-button secondary" onClick={handleReset}>yeniden başla</button>
               </div>
             )}
-          </div>
+        </>
         )}
 
         {/* ─── ANALYSIS ─── */}
