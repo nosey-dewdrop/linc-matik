@@ -5,6 +5,8 @@ import os
 from dotenv import load_dotenv
 import json
 import re
+import time
+from collections import defaultdict
 
 load_dotenv()
 
@@ -25,6 +27,36 @@ client = Anthropic(api_key=api_key)
 
 SYSTEM_PROMPT = """Sen bir sosyal medya linç simülatörüsün. Kullanıcının mental dayanıklılığını test ediyorsun.
 Cevapların SADECE istenen formatta olmalı. Markdown bloğu kullanma, sadece düz JSON veya düz text döndür."""
+
+# ═══ RATE LIMITING ═══
+# IP başına: dakikada max 5 istek
+# günlük toplam: max 200 istek
+IP_REQUESTS = defaultdict(list)
+DAILY_COUNT = {"count": 0, "date": None}
+RATE_PER_MINUTE = 5
+DAILY_LIMIT = 200
+
+
+def check_rate_limit(ip):
+    now = time.time()
+    today = time.strftime("%Y-%m-%d")
+
+    # günlük limit reset
+    if DAILY_COUNT["date"] != today:
+        DAILY_COUNT["count"] = 0
+        DAILY_COUNT["date"] = today
+
+    if DAILY_COUNT["count"] >= DAILY_LIMIT:
+        return False, "günlük limit doldu, yarın tekrar dene"
+
+    # ip başına dakika limiti
+    IP_REQUESTS[ip] = [t for t in IP_REQUESTS[ip] if now - t < 60]
+    if len(IP_REQUESTS[ip]) >= RATE_PER_MINUTE:
+        return False, "çok hızlısın, biraz bekle"
+
+    IP_REQUESTS[ip].append(now)
+    DAILY_COUNT["count"] += 1
+    return True, ""
 
 
 def extract_json(text):
@@ -68,6 +100,12 @@ def health():
 @app.route('/generate-linc', methods=['POST'])
 def generate_linc():
     try:
+        # rate limit kontrolü
+        ip = request.headers.get('X-Forwarded-For', request.remote_addr)
+        allowed, msg = check_rate_limit(ip)
+        if not allowed:
+            return jsonify({"error": msg}), 429
+
         data = request.json
         if not data:
             return jsonify({"error": "Boş request"}), 400
@@ -79,8 +117,8 @@ def generate_linc():
 
         if action == 'initial':
             statement = data.get('statement', '').strip()
-            if not statement:
-                return jsonify({"error": "Statement boş olamaz"}), 400
+            if not statement or len(statement) > 1000:
+                return jsonify({"error": "Statement boş veya çok uzun (max 1000 karakter)"}), 400
 
             prompt = f"""Kullanıcı şunu paylaştı: "{statement}"
 
@@ -103,6 +141,8 @@ Yorumlar Twitter, Reddit, Ekşi Sözlük'teki gerçek davranışları yansıtsı
             user_reply = data.get('user_reply', '').strip()
             if not linc_text or not user_reply:
                 return jsonify({"error": "linc_text ve user_reply gerekli"}), 400
+            if len(user_reply) > 500:
+                return jsonify({"error": "Cevap çok uzun (max 500 karakter)"}), 400
 
             prompt = f"""Önceki eleştiri: "{linc_text}"
 Kullanıcı cevabı: "{user_reply}"
