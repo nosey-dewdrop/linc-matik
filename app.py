@@ -9,7 +9,10 @@ import re
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
+
+# CORS: production'da frontend URL'ini FRONTEND_URL env variable'ından al
+frontend_url = os.getenv('FRONTEND_URL', 'http://localhost:3000')
+CORS(app, resources={r"/*": {"origins": [frontend_url, "http://localhost:3000"]}})
 
 # API key kontrolü
 api_key = os.getenv('ANTHROPIC_API_KEY')
@@ -152,6 +155,7 @@ def format_conversation(conversation):
 
 
 if __name__ == '__main__':
-    print("linçmatik backend çalışıyor")
-    print("http://localhost:5002")
-    app.run(debug=True, port=5002)
+    port = int(os.getenv('PORT', 5002))
+    debug = os.getenv('FLASK_ENV') != 'production'
+    print(f"linçmatik backend çalışıyor — port {port}")
+    app.run(debug=debug, host='0.0.0.0', port=port)
