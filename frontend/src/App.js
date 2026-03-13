@@ -128,7 +128,7 @@ function App() {
     setLoading(true);
     setVisibleComments(0);
     try {
-      const res = await fetch('${API_URL}/generate-linc', {
+      const res = await fetch(`${API_URL}/generate-linc`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'initial', statement: input }),
@@ -151,7 +151,7 @@ function App() {
     const linc = lincler.find(l => l.id === id);
     setLoading(true);
     try {
-      const res = await fetch('${API_URL}/generate-linc', {
+      const res = await fetch(`${API_URL}/generate-linc`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'reply', linc_text: linc.text, user_reply: replyInput }),
@@ -178,7 +178,7 @@ function App() {
     if (!lincler.length) return;
     setLoading(true);
     try {
-      const res = await fetch('${API_URL}/generate-linc', {
+      const res = await fetch(`${API_URL}/generate-linc`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'analyze', conversation: lincler.flatMap(l => l.conversation) }),
