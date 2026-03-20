@@ -1,0 +1,1056 @@
+{
+  "templates": [
+    {
+      "id": 1,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "ay {konu} diyo bi de, yazık sana ben senin yaşındayken çoktan hayatımı kurmuştum"
+    },
+    {
+      "id": 2,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "sen {konu} hakkında ne biliyosun ki canım, profil fotoğrafından belli zaten seviye"
+    },
+    {
+      "id": 3,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "{konu} paylaşacağına bi el yüz düzeltsen daha iyi olmaz mı"
+    },
+    {
+      "id": 4,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "kuzum {konu} diyosun da 200 takipçin var, kimse dinlemiyo seni farkında mısın"
+    },
+    {
+      "id": 5,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "güzelim sen {konu} konuşacak seviyede değilsin, bunu söylemek zorundayım"
+    },
+    {
+      "id": 6,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "vay be {konu} hakkında fikrin varmış senin, üniversite bile okumamış biri olarak cesurca"
+    },
+    {
+      "id": 7,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "{konu} yazıyo bi de, hayatında ne başardın ki konuşuyosun"
+    },
+    {
+      "id": 8,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "canım benim {konu} diye diye rezil oluyosun haberin yok, anne baban görmüyo mu bunları"
+    },
+    {
+      "id": 9,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "ya sen {konu} paylaşacağına git bi iş bul, ayıp oluyo artık"
+    },
+    {
+      "id": 10,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "tatlım {konu} hakkında bu kadar emin konuşma, geçen paylaşımlarına baktım pek tutarlı değilsin"
+    },
+    {
+      "id": 11,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "yeğenim {konu} diyon da sen daha kendine bakamıyosun, önce kendine bak"
+    },
+    {
+      "id": 12,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "{konu} paylaşmış bi de, senin yaşındaki çocuklar iş güç sahibi oldu sen hala bunlarla uğraşıyosun"
+    },
+    {
+      "id": 13,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "ay {konu} demiş, profile baktım da şaşırmadım açıkçası"
+    },
+    {
+      "id": 14,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "güzelim {konu} konusunda bu kadar cahil olma, biraz araştır sonra konuş"
+    },
+    {
+      "id": 15,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "sen {konu} yazınca herkes mi doğru kabul edecek sanıyosun, biraz alçakgönüllü ol"
+    },
+    {
+      "id": 16,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "yavrum {konu} konusunda fikir belirtecek kadar tecrüben yok, otur bi kenarda dinle"
+    },
+    {
+      "id": 17,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "{konu} hakkında yazmış, bu nesil gerçekten umutsuz vaka ya"
+    },
+    {
+      "id": 18,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "kızım sen {konu} bilsen ne olur bilmesen ne olur, dışardan bakınca komik duruyosun"
+    },
+    {
+      "id": 19,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "{konu} mu dedin sen, bi profiline baktım da 3 ayda 47 post atmışsın boş boş, git bi hobi edin"
+    },
+    {
+      "id": 20,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "canım {konu} diye paylaşım yapmak kolay, bi zahmet gerçek hayatta da bi şey yap"
+    },
+    {
+      "id": 21,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "ya ne {konu}su kardeşim ülke yanıyo sen hala bunları paylaşıyosun"
+    },
+    {
+      "id": 22,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "{konu} diyo ya valla dayanamıyorum artık böyle insanlara"
+    },
+    {
+      "id": 23,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "siktir git {konu} hakkında bi bok bilmiyosun konuşma"
+    },
+    {
+      "id": 24,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "ulan {konu} diye diye kafayı yiceksiniz hepiniz aynısınız"
+    },
+    {
+      "id": 25,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "{konu} paylaşanların hepsini engelliyorum artık, yeter be"
+    },
+    {
+      "id": 26,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "ya {konu} diyo bi de, git bi çalış kardeşim boş yapma"
+    },
+    {
+      "id": 27,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "ülkenin hali ortada sen hala {konu} paylaşıyosun, yazıklar olsun"
+    },
+    {
+      "id": 28,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "{konu} konusunda bu kadar yanlış bilgiyi bi arada görmemiştim, bravo sana"
+    },
+    {
+      "id": 29,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "ya arkadaş {konu} diyosun da ne alaka??? biraz düşün yazmadan önce"
+    },
+    {
+      "id": 30,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "bunlar {konu} konuşuyo ya ben delircem, gerçek sorunlardan haberleri yok"
+    },
+    {
+      "id": 31,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "{konu} hakkında bu kadar saçma bi yorum görmedim, tebrik ederim"
+    },
+    {
+      "id": 32,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "kardeşim {konu} konusunda sus artık, herkes senin gibi düşünmüyo"
+    },
+    {
+      "id": 33,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "aa {konu} uzmanı çıkmış yine, her gün bi yenisi türüyo bunlardan"
+    },
+    {
+      "id": 34,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "insanlar aç sen {konu} paylaşıyosun, vicdanın yok mu be"
+    },
+    {
+      "id": 35,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "ya {konu} yazmış bi de, engellicem şimdi seni bak"
+    },
+    {
+      "id": 36,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "{konu} konuşuyolar ya kafayı yicem, bu ülkede yaşamıyolar sanki"
+    },
+    {
+      "id": 37,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "kanka {konu} diyeceğine bi kitap oku, senin iyiliğin için söylüyorum"
+    },
+    {
+      "id": 38,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "sen {konu} paylaşırken adamlar mars'a gidiyo, farkı gör artık"
+    },
+    {
+      "id": 39,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "{konu}muş, hadi ordan be, boş yapma"
+    },
+    {
+      "id": 40,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "ya {konu} diye ağlama burada git bi derdini anlat arkadaşlarına, biz niye dinleyelim"
+    },
+    {
+      "id": 41,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "{konu} paylaşmak yerine bi düşünseydin topluma ne mesaj veriyosun diye"
+    },
+    {
+      "id": 42,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "düşün bi, {konu} paylaşıyosun da seni takip eden gençler ne anlıyo bundan"
+    },
+    {
+      "id": 43,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "{konu} hakkında böyle konuşmak doğru mu sence, biraz empati kur"
+    },
+    {
+      "id": 44,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "ben olsam {konu} hakkında böyle rahat konuşamazdım, biraz utanma duygusu lazım"
+    },
+    {
+      "id": 45,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "{konu} paylaşıyosun ama aileler de görüyo bunu düşün bi"
+    },
+    {
+      "id": 46,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "yani {konu} güzel hoş da bu toplumda yaşıyoruz biraz dikkat etmek lazım"
+    },
+    {
+      "id": 47,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "{konu} konusunda bu kadar rahat olman üzücü, değerlerimiz nereye gidiyo"
+    },
+    {
+      "id": 48,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "herkes {konu} paylaşsa ne olur düşündün mü, biraz sorumluluk"
+    },
+    {
+      "id": 49,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "{konu} diyo ama çocuklar da bu platformda, düşünsene bi"
+    },
+    {
+      "id": 50,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "yav {konu} paylaşmak serbest tabi ama insan bi sorar kendine 'bu doğru mu' diye"
+    },
+    {
+      "id": 51,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "{konu} hakkında böyle yazmak kolay, bi de karşı tarafı düşün"
+    },
+    {
+      "id": 52,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "sence {konu} paylaşmak normal mi, biz bu hale nasıl geldik ya"
+    },
+    {
+      "id": 53,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "eskiden {konu} hakkında böyle rahat konuşulmazdı, nereye gidiyoruz"
+    },
+    {
+      "id": 54,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "{konu} güzel de, bu paylaşımı anan baban görse ne der acaba"
+    },
+    {
+      "id": 55,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "ben {konu} hakkında konuşmam normalde ama birileri uyarmalı, bu gidişat iyi değil"
+    },
+    {
+      "id": 56,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "{konu} konusunda bu kadar cesaretli olacağına gençlere iyi örnek ol"
+    },
+    {
+      "id": 57,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "toplum olarak {konu} normalleştirmeyelim lütfen, düşün bi"
+    },
+    {
+      "id": 58,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "{konu} yazıyosun da yarın öbür gün çocuğun görse utanmaz mısın"
+    },
+    {
+      "id": 59,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "biraz ahlak biraz edep, {konu} paylaşırken de düşüneceksin"
+    },
+    {
+      "id": 60,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "{konu} demiş, vay be gerçekten değerler erozyonu yaşıyoruz"
+    },
+    {
+      "id": 61,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "yanlış anlama ama {konu} hakkında biraz daha araştırsan iyi olur, eksik bilgiyle konuşuyosun"
+    },
+    {
+      "id": 62,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "bak {konu} konusunda haklı olabilirsin ama bu şekilde paylaşınca kimse ciddiye almaz seni"
+    },
+    {
+      "id": 63,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "{konu} güzel konu da senin yaklaşımın biraz yüzeysel kalmış, kusura bakma"
+    },
+    {
+      "id": 64,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "yapıcı eleştiri olarak söylüyorum, {konu} hakkında biraz daha oku sonra gel"
+    },
+    {
+      "id": 65,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "kötü niyetim yok ama {konu} konusundaki bilgin 2015'te kalmış gibi"
+    },
+    {
+      "id": 66,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "{konu} doğru ama senin anlatım şeklin yanlış, insanları itiyosun farkında mısın"
+    },
+    {
+      "id": 67,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "sana bi tavsiye, {konu} paylaşmadan önce en az 3-4 kaynak kontrol et, şu an güvenilir durmuyo"
+    },
+    {
+      "id": 68,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "demek istemezdim ama {konu} hakkında yazıyosan biraz daha derinlemesine bak, yüzeysel kalıyo"
+    },
+    {
+      "id": 69,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "{konu} konusunda herkes uzman olmuş ya, biraz alçakgönüllülük kimseyi öldürmez"
+    },
+    {
+      "id": 70,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "saygıyla söylüyorum, {konu} hakkında bu kadar emin konuşman için daha fazla bilgin olmalı"
+    },
+    {
+      "id": 71,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "ben de {konu} destekliyorum ama senin argümanların zayıf, böyle savunursan zarar veriyosun"
+    },
+    {
+      "id": 72,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "{konu} önemli bi mesele, ama bu şekilde ele alınca ciddiyetini kaybediyo"
+    },
+    {
+      "id": 73,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "bak kardeşim {konu} konusunda bi sürü iyi kaynak var, sen niye en kötüsünü seçtin"
+    },
+    {
+      "id": 74,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "{konu} diyosun tamam da, geçen hafta tam tersini söylemiştin, tutarlılık lazım"
+    },
+    {
+      "id": 75,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "senin iyiliğin için söylüyorum, {konu} hakkında bu tarz paylaşımlar seni komik duruma düşürüyo"
+    },
+    {
+      "id": 76,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "objektif bakarsak {konu} konusunda haklısın ama sunum şeklin berbat, kimse dinlemez böyle"
+    },
+    {
+      "id": 77,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "niyetin iyi olabilir ama {konu} paylaşımın yanlış anlaşılmaya çok müsait, dikkat et"
+    },
+    {
+      "id": 78,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "{konu} konusunda kendini geliştirmeni öneririm, şu anki seviyenle fikir beyan etme bence"
+    },
+    {
+      "id": 79,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "düşmanlık olarak alma ama {konu} yazın gerçekten zayıf, daha iyi yapabilirsin"
+    },
+    {
+      "id": 80,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "{konu} hakkında konuşmak istiyosan önce dinlemeyi öğren, hep kendi fikrini dayatıyosun"
+    },
+    {
+      "id": 81,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "aslında {konu} dediğin şey tam olarak öyle değil, biraz araştırsan görürsün"
+    },
+    {
+      "id": 82,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "{konu} hakkında konuşuyosun ama temel kavramları bile yanlış kullanıyosun, düzelteyim..."
+    },
+    {
+      "id": 83,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "hmm {konu} konusunda yanılıyosun, ben bu alanda 5 yıldır çalışıyorum biliyorum"
+    },
+    {
+      "id": 84,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "şimdi {konu} diyosun da, aslında mesele çok daha karmaşık, anlatsam anlamazsın büyük ihtimal"
+    },
+    {
+      "id": 85,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "{konu} konusunda bi düzeltme yapayım: tamamen yanlış biliyosun, doğrusu şöyle..."
+    },
+    {
+      "id": 86,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "ya {konu} bu kadar basit değil, sen yüzeysel bakıyosun konuya"
+    },
+    {
+      "id": 87,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "{konu} hakkında bi podcast dinledim diye uzman olunmuyo, fyi"
+    },
+    {
+      "id": 88,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "bak {konu} konusunda sana bi şey öğreteyim, senin bildiğin versiyon eski"
+    },
+    {
+      "id": 89,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "{konu} dediğin şeyin arkasında aslında çok farklı bi dinamik var, ama sen bilmezsin tabi"
+    },
+    {
+      "id": 90,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "güzel de {konu} konusunda literatür ne diyo biliyo musun, hayır bilmiyosun"
+    },
+    {
+      "id": 91,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "{konu} yazarken en azından bi google'a yazsaydın, 2 dk'lık araştırma bile yapmamışsın"
+    },
+    {
+      "id": 92,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "actually {konu} konusundaki son araştırmalar tam tersini söylüyo ama neyse"
+    },
+    {
+      "id": 93,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "{konu} demiş ama kaynak yok tabi, herkes her şeyi biliyomuş gibi yazıyo"
+    },
+    {
+      "id": 94,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "şimdi {konu} diyosun da, ben bu konuda 3 tane makale okudum ve sen hepsinin aksini söylüyosun"
+    },
+    {
+      "id": 95,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "{konu} konusunda bu kadar cahil olmak da bi maharet aslında, tebrikler"
+    },
+    {
+      "id": 96,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "hmm {konu} diye yazmışsın ama terminolojiyi bile yanlış kullanıyosun, nereden başlasam"
+    },
+    {
+      "id": 97,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "{konu} bu kadar basit olsaydı herkes uzman olurdu, biraz derinlemesine bak"
+    },
+    {
+      "id": 98,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "ben {konu} konusunda yıllardır takip ediyorum, senin dediğin şey tamamen mıth"
+    },
+    {
+      "id": 99,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "{konu} paylaşımında en az 4 tane faktüel hata var, düzelteyim mi yoksa kendin mi bulursun"
+    },
+    {
+      "id": 100,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "sevgili arkadaşım {konu} hakkında yazmadan önce en azından wikipedia'ya bi baksaydın keşke"
+    }
+  ],
+  "generic": [
+    {
+      "id": 1,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "profil fotoğrafından belli zaten seviye, yorum yapmaya gerek yok"
+    },
+    {
+      "id": 2,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "ay canım benim sen internette vakit harcayacağına bi iş bul"
+    },
+    {
+      "id": 3,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "200 takipçiyle bu kadar özgüvenli olma kuzum"
+    },
+    {
+      "id": 4,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "bu nesil gerçekten umutsuz, paylaşımlara bak"
+    },
+    {
+      "id": 5,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "güzelim üniversite oku önce sonra fikir beyan et"
+    },
+    {
+      "id": 6,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "geçmiş paylaşımlarına baktım da tutarlılık sıfır, her gün başka bişey"
+    },
+    {
+      "id": 7,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "tatlım senin yaşında ben çoktan 2 çocuk büyütmüştüm, sen hala sosyal medyada takılıyosun"
+    },
+    {
+      "id": 8,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "profil fotoğrafın ile paylaşımların arasındaki uyumsuzluk komik"
+    },
+    {
+      "id": 9,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "yazık, anne baban bunları görmüyodur umarım"
+    },
+    {
+      "id": 10,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "kuzum bi aynaya bak sonra bu paylaşımları yap, öncelik sıralaması yanlış"
+    },
+    {
+      "id": 11,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "hayatında ne başardın ki bu kadar konuşuyosun canım"
+    },
+    {
+      "id": 12,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "bi kendine baksana, başkalarına akıl verecek durumda mısın"
+    },
+    {
+      "id": 13,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "yeğenim git bi el yüz düzelt bu paylaşımlar sana yakışmıyo"
+    },
+    {
+      "id": 14,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "senin gibi 50 kişi görüyorum her gün, hepsi aynı şeyi sanıyo kendini bi şey"
+    },
+    {
+      "id": 15,
+      "category": "kisisel_saldiri",
+      "persona": "toxic_teyze",
+      "text": "böyle devam et kuzum, 40 yaşında da aynı yerde olursun"
+    },
+    {
+      "id": 16,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "ülke batıyo millet hala boş yapıyo ya, dayanamıyorum artık"
+    },
+    {
+      "id": 17,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "bunu paylaşan eli kırılsaydı keşke"
+    },
+    {
+      "id": 18,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "engel basıyorum böylelerine artık, sinir stres"
+    },
+    {
+      "id": 19,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "yazıklar olsun size ya, hiç mi utanma yok"
+    },
+    {
+      "id": 20,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "bu ne biçim paylaşım ya, gerçekten soruyorum"
+    },
+    {
+      "id": 21,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "millet aç sen burada tatava yapıyosun, utan bi"
+    },
+    {
+      "id": 22,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "bi siktir git ya, böylelerini gördükçe kan beynime sıçrıyo"
+    },
+    {
+      "id": 23,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "her gün bi yenisi çıkıyo, hepsi aynı boşluk, yeter artık"
+    },
+    {
+      "id": 24,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "bunu beğenenlerin de aklına şaşarım"
+    },
+    {
+      "id": 25,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "kafayı yicem böyle insanlar yüzünden, gerçekten"
+    },
+    {
+      "id": 26,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "hadi ordan be, boş yapma"
+    },
+    {
+      "id": 27,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "twitter'ı sil git bi hayat edin, daha iyi olur herkes için"
+    },
+    {
+      "id": 28,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "bu tarz insanlar yüzünden ülke bu halde, net söylüyorum"
+    },
+    {
+      "id": 29,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "gerçek hayatta yüzüme söyle bunları, bakalım ne olcak"
+    },
+    {
+      "id": 30,
+      "category": "keyboard_warrior",
+      "persona": "keyboard_warrior",
+      "text": "bu paylaşımı yapan kişi oy da kullanıyodur, korkutucu"
+    },
+    {
+      "id": 31,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "bu paylaşımı çocuklar da görüyo, düşün bi"
+    },
+    {
+      "id": 32,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "toplum olarak nereye gidiyoruz, bu paylaşımlara bak"
+    },
+    {
+      "id": 33,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "eskiden böyle şeyler paylaşılmazdı, utanılırdı"
+    },
+    {
+      "id": 34,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "değerler erozyonu resmen, her gün biraz daha kötüye gidiyoruz"
+    },
+    {
+      "id": 35,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "bunu anan baban görse ne der acaba, düşün bi"
+    },
+    {
+      "id": 36,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "biraz edep biraz haya, çok mu zor"
+    },
+    {
+      "id": 37,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "gençlere ne örnek oluyosunuz farkında mısınız"
+    },
+    {
+      "id": 38,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "herkes her şeyi paylaşmak zorunda mı, biraz filtre lazım"
+    },
+    {
+      "id": 39,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "böyle giderse 10 yıl sonra çok farklı bi toplum olcaz, iyi anlamda değil"
+    },
+    {
+      "id": 40,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "bi vicdan muhasebesi yapın artık ya"
+    },
+    {
+      "id": 41,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "sosyal medya insanları canavarlaştırdı, bu paylaşım da bunun kanıtı"
+    },
+    {
+      "id": 42,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "yarın öbür gün çocuğun bunu bulursa ne diceksin"
+    },
+    {
+      "id": 43,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "insan bi düşünür paylaşmadan önce, topluma ne katıyor diye"
+    },
+    {
+      "id": 44,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "internet kalıcıdır, bi gün karşına çıkar bu paylaşımlar"
+    },
+    {
+      "id": 45,
+      "category": "moral_bekcisi",
+      "persona": "moral_bekcisi",
+      "text": "allah akıl fikir versin, başka bişey demiyorum"
+    },
+    {
+      "id": 46,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "kötü niyetim yok ama bu paylaşım gerçekten zayıf kalmış"
+    },
+    {
+      "id": 47,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "yapıcı eleştiri olarak söylüyorum, biraz daha araştır sonra paylaş"
+    },
+    {
+      "id": 48,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "senin iyiliğin için söylüyorum, bu tarz paylaşımlar itibarını zedeliyo"
+    },
+    {
+      "id": 49,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "yanlış anlama ama biraz daha tutarlı olsan daha inandırıcı olursun"
+    },
+    {
+      "id": 50,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "bence bu paylaşımı sil, sana bi faydası yok, herkes dalga geçiyo"
+    },
+    {
+      "id": 51,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "demek istemezdim ama kaynaklarını kontrol etmemişsin, belli oluyo"
+    },
+    {
+      "id": 52,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "objektif bakınca bu paylaşımda bi içerik yok aslında, düşünsene"
+    },
+    {
+      "id": 53,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "düşmanlık değil ama geçen haftaki paylaşımının tam tersini söylüyosun, tutarlılık önemli"
+    },
+    {
+      "id": 54,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "saygıyla söylüyorum, biraz daha dinleyip sonra konuşsan daha iyi olur"
+    },
+    {
+      "id": 55,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "niyetin iyi olabilir ama sunum şeklin gerçekten berbat"
+    },
+    {
+      "id": 56,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "bi adım geri at ve kendi paylaşımına dışardan bak, ne görüyosun"
+    },
+    {
+      "id": 57,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "kardeşim bu paylaşımla aslında kendi argümanına zarar veriyosun, farkında mısın"
+    },
+    {
+      "id": 58,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "herkes uzman olmuş, biraz alçakgönüllülük kimseyi öldürmez"
+    },
+    {
+      "id": 59,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "iyi niyetle söylüyorum, bu paylaşımı bi gözden geçir, hatalar var"
+    },
+    {
+      "id": 60,
+      "category": "hakli_elestiri",
+      "persona": "hakli_hasan",
+      "text": "sana kızmıyorum ama bu kalite standartlarının altında, daha iyisini yapabilirsin"
+    },
+    {
+      "id": 61,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "aslında mesele bu kadar basit değil ama neyse, anlatamam"
+    },
+    {
+      "id": 62,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "bunu bi google'a yazsaydın 2 saniyede öğrenirdin ama olsun"
+    },
+    {
+      "id": 63,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "kaynak vermeden konuşmak kolay tabi, herkes yapıyo"
+    },
+    {
+      "id": 64,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "ben bu konuda yıllardır araştırma yapıyorum, bu kadar yüzeysel bakılmaz"
+    },
+    {
+      "id": 65,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "actually bu tam olarak öyle değil ama düzeltmeye üşeniyorum"
+    },
+    {
+      "id": 66,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "bi podcast dinleyip uzman olunmuyo, fyi"
+    },
+    {
+      "id": 67,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "son araştırmalar tam tersini söylüyo ama sen bilirsin tabi"
+    },
+    {
+      "id": 68,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "terminolojiyi bile yanlış kullanıyosun, nereden başlasam bilemedim"
+    },
+    {
+      "id": 69,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "bu konuda en az 3-4 kitap okumadan konuşulmamalı bence"
+    },
+    {
+      "id": 70,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "hmm, bunu yazan kişi konu hakkında hiçbişey bilmiyo, klasik"
+    },
+    {
+      "id": 71,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "yav bu konuyu bi ben mi doğru biliyorum, herkes yanlış söylüyo"
+    },
+    {
+      "id": 72,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "düzeltme: bu paylaşımdaki bilginin yarısı yanlış, devam mı edeyim"
+    },
+    {
+      "id": 73,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "wikipedia bile bunu daha iyi açıklıyo, biraz çaba gösterin"
+    },
+    {
+      "id": 74,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "bu kadar yanlış bilgiyi bi arada görmek de zor aslında, tebrikler"
+    },
+    {
+      "id": 75,
+      "category": "bilmis_birisi",
+      "persona": "bilmis_burcu",
+      "text": "konuyu bilmeden yorum yapmak cesaret ister, onu taktir ediyorum en azından"
+    }
+  ]
+}

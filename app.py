@@ -1,73 +1,144 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from anthropic import Anthropic
 import os
 from dotenv import load_dotenv
 import json
 import re
 import time
+import random
 from collections import defaultdict
 
 load_dotenv()
 
 app = Flask(__name__)
 
-# CORS: production'da frontend URL'ini FRONTEND_URL env variable'ından al
+# CORS
 frontend_url = os.getenv('FRONTEND_URL', 'http://localhost:3000')
-CORS(app, resources={r"/*": {"origins": [frontend_url, "http://localhost:3000"]}})
+CORS(app, resources={r"/*": {"origins": [frontend_url, "http://localhost:3000", "http://localhost:3001"]}})
 
-# API key kontrolü
-api_key = os.getenv('ANTHROPIC_API_KEY')
-if not api_key:
-    print("ANTHROPIC_API_KEY bulunamadı! .env dosyasını kontrol edin.")
+# ═══ GROQ (reply + analiz icin) ═══
+groq_key = os.getenv('GROQ_API_KEY')
+groq_client = None
+if groq_key:
+    from groq import Groq
+    groq_client = Groq(api_key=groq_key)
+    print(f"groq api key yuklendi: {groq_key[:12]}...")
 else:
-    print(f"API Key yüklendi: {api_key[:12]}...")
+    print("GROQ_API_KEY bulunamadi — reply ve analiz calisMAYACAK")
 
-client = Anthropic(api_key=api_key)
+# ═══ DATASET ═══
+DATASET_PATH = os.path.join(os.path.dirname(__file__), 'yorumlar.json')
+dataset = {"templates": [], "generic": []}
 
-SYSTEM_PROMPT = """Sen bir sosyal medya linç simülatörüsün. Kullanıcının mental dayanıklılığını test ediyorsun.
-Cevapların SADECE istenen formatta olmalı. Markdown bloğu kullanma, sadece düz JSON veya düz text döndür."""
+def load_dataset():
+    global dataset
+    try:
+        with open(DATASET_PATH, 'r', encoding='utf-8') as f:
+            dataset = json.load(f)
+        print(f"dataset yuklendi: {len(dataset['templates'])} template, {len(dataset['generic'])} generic")
+    except Exception as e:
+        print(f"dataset yuklenemedi: {e}")
+
+load_dataset()
+
+PERSONA_MAP = {
+    "toxic_teyze": 0,
+    "keyboard_warrior": 1,
+    "moral_bekcisi": 2,
+    "hakli_hasan": 3,
+    "bilmis_burcu": 4,
+}
+
+SYSTEM_PROMPT = """Sen bir sosyal medya linc simulatorusun. Kullanicinin mental dayanikliligini test ediyorsun.
+Turkce yaz, kisa ve keskin ol. Markdown kullanma."""
+
 
 # ═══ RATE LIMITING ═══
-# IP başına: dakikada max 5 istek
-# günlük toplam: max 200 istek
 IP_REQUESTS = defaultdict(list)
 DAILY_COUNT = {"count": 0, "date": None}
-RATE_PER_MINUTE = 5
-DAILY_LIMIT = 200
+RATE_PER_MINUTE = 10
+DAILY_LIMIT = 500
 
 
 def check_rate_limit(ip):
     now = time.time()
     today = time.strftime("%Y-%m-%d")
 
-    # günlük limit reset
     if DAILY_COUNT["date"] != today:
         DAILY_COUNT["count"] = 0
         DAILY_COUNT["date"] = today
 
     if DAILY_COUNT["count"] >= DAILY_LIMIT:
-        return False, "günlük limit doldu, yarın tekrar dene"
+        return False, "gunluk limit doldu, yarin tekrar dene"
 
-    # ip başına dakika limiti
     IP_REQUESTS[ip] = [t for t in IP_REQUESTS[ip] if now - t < 60]
     if len(IP_REQUESTS[ip]) >= RATE_PER_MINUTE:
-        return False, "çok hızlısın, biraz bekle"
+        return False, "cok hizlisin, biraz bekle"
 
     IP_REQUESTS[ip].append(now)
     DAILY_COUNT["count"] += 1
     return True, ""
 
 
+def generate_comments_from_dataset(statement):
+    """dataset'ten 5 yorum sec, {konu} placeholder'ini statement ile degistir"""
+    categories = ["kisisel_saldiri", "keyboard_warrior", "moral_bekcisi", "hakli_elestiri", "bilmis_birisi"]
+    yorumlar = []
+
+    # konu icin kisa bir ozet cikar (ilk 60 karakter)
+    konu = statement[:60].strip()
+    if len(statement) > 60:
+        konu = konu.rsplit(' ', 1)[0] + "..."
+
+    for i, cat in enumerate(categories):
+        # bu kategoriden template'leri filtrele
+        cat_templates = [t for t in dataset.get("templates", []) if t["category"] == cat]
+        cat_generics = [t for t in dataset.get("generic", []) if t["category"] == cat]
+
+        # %70 template, %30 generic tercih et
+        if cat_templates and (random.random() < 0.7 or not cat_generics):
+            chosen = random.choice(cat_templates)
+            text = chosen["text"].replace("{konu}", konu)
+        elif cat_generics:
+            chosen = random.choice(cat_generics)
+            text = chosen["text"]
+        else:
+            text = f"ya bunu da paylasmazsin be, {konu} hakkinda ne biliyorsun ki"
+
+        yorumlar.append({"id": i + 1, "text": text})
+
+    random.shuffle(yorumlar)
+    # id'leri yeniden ata
+    for idx, y in enumerate(yorumlar):
+        y["id"] = idx + 1
+
+    return yorumlar
+
+
+def groq_chat(prompt, system=SYSTEM_PROMPT, max_tokens=600):
+    """groq api ile chat completion"""
+    if not groq_client:
+        raise ValueError("groq api key ayarlanmamis")
+
+    response = groq_client.chat.completions.create(
+        model="llama-3.3-70b-versatile",
+        messages=[
+            {"role": "system", "content": system},
+            {"role": "user", "content": prompt},
+        ],
+        max_tokens=max_tokens,
+        temperature=0.85,
+    )
+    return response.choices[0].message.content
+
+
 def extract_json(text):
-    """3 katmanlı JSON parsing: direkt → markdown strip → regex"""
-    # 1. Direkt parse
+    """3 katmanli JSON parsing"""
     try:
         return json.loads(text)
     except json.JSONDecodeError:
         pass
 
-    # 2. Markdown strip
     cleaned = text.strip()
     if cleaned.startswith("```json"):
         cleaned = cleaned[7:]
@@ -81,7 +152,6 @@ def extract_json(text):
     except json.JSONDecodeError:
         pass
 
-    # 3. Regex — ilk { ... } bloğunu bul
     match = re.search(r'\{[\s\S]*\}', text)
     if match:
         try:
@@ -89,18 +159,21 @@ def extract_json(text):
         except json.JSONDecodeError:
             pass
 
-    raise ValueError(f"JSON parse edilemedi: {text[:200]}")
+    raise ValueError(f"json parse edilemedi: {text[:200]}")
 
 
 @app.route('/health', methods=['GET'])
 def health():
-    return jsonify({"status": "alive"})
+    return jsonify({
+        "status": "alive",
+        "dataset": len(dataset.get("templates", [])) + len(dataset.get("generic", [])),
+        "groq": groq_client is not None,
+    })
 
 
 @app.route('/generate-linc', methods=['POST'])
 def generate_linc():
     try:
-        # rate limit kontrolü
         ip = request.headers.get('X-Forwarded-For', request.remote_addr)
         allowed, msg = check_rate_limit(ip)
         if not allowed:
@@ -108,77 +181,77 @@ def generate_linc():
 
         data = request.json
         if not data:
-            return jsonify({"error": "Boş request"}), 400
+            return jsonify({"error": "bos request"}), 400
 
         action = data.get('action', 'initial')
 
         if action not in ('initial', 'reply', 'analyze'):
-            return jsonify({"error": f"Bilinmeyen action: {action}"}), 400
+            return jsonify({"error": f"bilinmeyen action: {action}"}), 400
 
+        # ═══ INITIAL: groq ile yorum uret ═══
         if action == 'initial':
             statement = data.get('statement', '').strip()
             if not statement or len(statement) > 1000:
-                return jsonify({"error": "Statement boş veya çok uzun (max 1000 karakter)"}), 400
+                return jsonify({"error": "statement bos veya cok uzun (max 1000)"}), 400
 
-            prompt = f"""Kullanıcı şunu paylaştı: "{statement}"
+            prompt = f"""Kullanici su paylasimi yapti: "{statement}"
 
-Bu paylaşıma gelebilecek 5 farklı olumsuz/eleştirel yorum üret. Her biri kısa olsun (1-2 cümle).
+Bu paylasima gelebilecek 5 farkli olumsuz/elestrel yorum uret. Her biri kisa olsun (1-2 cumle).
 
 Sosyal medyada insanlar:
-- Alakasız detaylardan yola çıkarak eleştirir
-- Mantıksız bağlantılar kurar
-- Kişisel eleştirilerde bulunur
-- Yazım hatalarını bahane eder
-- Tamamen konuyla alakasız eleştiriler yapar
+- Alakasiz detaylardan yola cikarak elestirir
+- Mantikisiz baglantilar kurar
+- Kisisel elestirilerde bulunur
+- Yazim hatalarini bahane eder
+- Tamamen konuyla alakasiz elestiriler yapar
 
-SADECE JSON döndür:
-{{"yorumlar": [{{"id": 1, "text": "eleştiri 1"}}, {{"id": 2, "text": "eleştiri 2"}}, {{"id": 3, "text": "eleştiri 3"}}, {{"id": 4, "text": "eleştiri 4"}}, {{"id": 5, "text": "eleştiri 5"}}]}}
+SADECE JSON dondur, baska hicbir sey yazma:
+{{"yorumlar": [{{"id": 1, "text": "elestiri 1"}}, {{"id": 2, "text": "elestiri 2"}}, {{"id": 3, "text": "elestiri 3"}}, {{"id": 4, "text": "elestiri 4"}}, {{"id": 5, "text": "elestiri 5"}}]}}
 
-Yorumlar Twitter, Reddit, Ekşi Sözlük'teki gerçek davranışları yansıtsın."""
+Yorumlar Twitter, Reddit, Eksi Sozluk'teki gercek davranislari yansitsin. Turkce yaz, gunluk konusma diliyle."""
 
+            response_text = groq_chat(prompt, max_tokens=600)
+            result = extract_json(response_text)
+            return jsonify(result)
+
+        # ═══ REPLY: groq ile cevap ═══
         elif action == 'reply':
             linc_text = data.get('linc_text', '').strip()
             user_reply = data.get('user_reply', '').strip()
             if not linc_text or not user_reply:
                 return jsonify({"error": "linc_text ve user_reply gerekli"}), 400
             if len(user_reply) > 500:
-                return jsonify({"error": "Cevap çok uzun (max 500 karakter)"}), 400
+                return jsonify({"error": "cevap cok uzun (max 500)"}), 400
 
-            prompt = f"""Önceki eleştiri: "{linc_text}"
-Kullanıcı cevabı: "{user_reply}"
+            prompt = f"""Onceki elestiri: "{linc_text}"
+Kullanici cevabi: "{user_reply}"
 
-Bu cevaba 1 cümlelik eleştirel yanıt ver. Sadece yanıt metnini döndür, başka bir şey yazma."""
+Bu cevaba sosyal medya tarzinda 1 cumlelik keskin ve elestrel yanit ver.
+Gercek bir internet trollu gibi yaz. Sadece yanit metnini dondur."""
 
+            response_text = groq_chat(prompt, max_tokens=200)
+            return jsonify({"response": response_text.strip()})
+
+        # ═══ ANALYZE: groq ile analiz ═══
         elif action == 'analyze':
             conversation = data.get('conversation', [])
             if not conversation:
-                return jsonify({"error": "Conversation boş olamaz"}), 400
+                return jsonify({"error": "conversation bos olamaz"}), 400
 
-            prompt = f"""Şu etkileşimi analiz et:
+            formatted = "\n".join(f"{item['role']}: {item['text']}" for item in conversation)
 
-{format_conversation(conversation)}
+            prompt = f"""Su etkilesimi analiz et:
 
-İki tarafın da durumunu analiz et.
+{formatted}
 
-SADECE JSON döndür:
-{{"kullanici_durum": "analiz", "elestiren_durum": "analiz", "genel": "değerlendirme"}}"""
+Iki tarafin da durumunu analiz et. Psikolojik acidan degerlendirme yap.
 
-        # API çağrısı
-        message = client.messages.create(
-            model="claude-sonnet-4-20250514",
-            max_tokens=800,
-            system=SYSTEM_PROMPT,
-            messages=[{"role": "user", "content": prompt}]
-        )
+SADECE JSON dondur:
+{{"kullanici_durum": "kullanicinin tutumu ve durumu hakkinda 2-3 cumle analiz", "elestiren_durum": "elestirenin motivasyonu hakkinda 2-3 cumle analiz", "genel": "genel degerlendirme ve tavsiye, 2-3 cumle"}}"""
 
-        response_text = message.content[0].text
-        print(f"CLAUDE CEVABI: {response_text[:200]}")
-
-        if action in ('initial', 'analyze'):
+            response_text = groq_chat(prompt, max_tokens=500)
             result = extract_json(response_text)
             return jsonify(result)
-        else:
-            return jsonify({"response": response_text})
 
     except Exception as e:
         import traceback
@@ -187,15 +260,8 @@ SADECE JSON döndür:
         return jsonify({"error": str(e)}), 500
 
 
-def format_conversation(conversation):
-    formatted = []
-    for item in conversation:
-        formatted.append(f"{item['role']}: {item['text']}")
-    return "\n".join(formatted)
-
-
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5002))
     debug = os.getenv('FLASK_ENV') != 'production'
-    print(f"linçmatik backend çalışıyor — port {port}")
+    print(f"lincmatik backend calisiyor — port {port}")
     app.run(debug=debug, host='0.0.0.0', port=port)
