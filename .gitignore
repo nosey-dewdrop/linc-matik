@@ -34,4 +34,4 @@ Thumbs.db
 *.log
 
 # test files
-test.py
+test.py.claude/
