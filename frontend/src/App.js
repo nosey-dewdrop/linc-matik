@@ -3,14 +3,30 @@ import { useState, useEffect, useCallback } from 'react';
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5002';
 
-/* ════ TROLL PERSONAS ════ */
-const TROLLS = [
-  { name: 'Toxic Teyze',     handle: '@toxic_teyze',     initials: 'TT', gradient: 'linear-gradient(135deg, #e84580, #d42d6a)' },
-  { name: 'Keyboard Warrior', handle: '@keyboard_warrior', initials: 'KW', gradient: 'linear-gradient(135deg, #8e35b8, #5e1a82)' },
-  { name: 'Moral Bekçisi',   handle: '@moral_bekcisi',   initials: 'MB', gradient: 'linear-gradient(135deg, #b05ed4, #7a2a9e)' },
-  { name: 'Haklı Hasan',     handle: '@hakli_hasan',     initials: 'HH', gradient: 'linear-gradient(135deg, #c98be3, #8e35b8)' },
-  { name: 'Bilmiş Burcu',    handle: '@bilmis_burcu',    initials: 'BB', gradient: 'linear-gradient(135deg, #f472a8, #e84580)' },
+/* ════ RANDOM NICK GENERATOR ════ */
+const PREFIXES = ['kral','queen','dark','cool','real','mini','mega','lord','lady','mad','zen','neo','lil','big','dj'];
+const NAMES = ['ayse','mehmet','ece','berk','deniz','can','su','ali','selin','mert','elif','yusuf','defne','kerem','zeynep','emre','nil','arda','ceren','burak'];
+const SUFFIXES = ['xx','99','34','06','_','ist','tr','00','61','48','35','16','01','42','53'];
+const GRADIENTS = [
+  'linear-gradient(135deg, #e84580, #d42d6a)',
+  'linear-gradient(135deg, #8e35b8, #5e1a82)',
+  'linear-gradient(135deg, #b05ed4, #7a2a9e)',
+  'linear-gradient(135deg, #c98be3, #8e35b8)',
+  'linear-gradient(135deg, #f472a8, #e84580)',
+  'linear-gradient(135deg, #6a3de8, #4a1db8)',
+  'linear-gradient(135deg, #e8453d, #b82d1d)',
+  'linear-gradient(135deg, #3db8e8, #1d8eb8)',
 ];
+
+function randomTroll() {
+  const prefix = Math.random() < 0.5 ? PREFIXES[Math.floor(Math.random() * PREFIXES.length)] : '';
+  const name = NAMES[Math.floor(Math.random() * NAMES.length)];
+  const suffix = SUFFIXES[Math.floor(Math.random() * SUFFIXES.length)];
+  const handle = `@${prefix}${name}${suffix}`;
+  const initials = name.slice(0, 2).toUpperCase();
+  const gradient = GRADIENTS[Math.floor(Math.random() * GRADIENTS.length)];
+  return { handle, initials, gradient };
+}
 
 /* ════ ÖNEMLİ KİTAPLAR ════ */
 const BOOKS = [
@@ -161,9 +177,9 @@ function App() {
     try {
       const data = await apiCall({ action: 'initial', statement: input });
       if (data.yorumlar) {
-        setLincler(data.yorumlar.map((l, i) => ({
+        setLincler(data.yorumlar.map((l) => ({
           ...l,
-          troll: TROLLS[i % TROLLS.length],
+          troll: randomTroll(),
           conversation: [{ role: 'Elestiren', text: l.text }],
         })));
         setInput('');

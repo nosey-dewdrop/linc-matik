@@ -49,8 +49,9 @@ PERSONA_MAP = {
     "bilmis_burcu": 4,
 }
 
-SYSTEM_PROMPT = """Sen bir sosyal medya linc simulatorusun. Kullanicinin mental dayanikliligini test ediyorsun.
-Turkce yaz, kisa ve keskin ol. Markdown kullanma."""
+SYSTEM_PROMPT = """Sen sosyal medyadaki en zehirli yorumcularin beynisin. Twitter, Eksi Sozluk, Reddit'teki en aci, en kirici ama zeki yorumlari yaziyorsun.
+Amacin kullanicinin mental dayanikliligini test etmek. Yumusak olma, seni seven insanlara degil sana saldiran insanlara benzeyen yorumlar yaz.
+Turkce yaz, sokak dili kullan, kisa ve keskin ol. Markdown kullanma, sadece duz text veya JSON."""
 
 
 # ═══ RATE LIMITING ═══
@@ -194,21 +195,21 @@ def generate_linc():
             if not statement or len(statement) > 1000:
                 return jsonify({"error": "statement bos veya cok uzun (max 1000)"}), 400
 
-            prompt = f"""Kullanici su paylasimi yapti: "{statement}"
+            prompt = f"""Kullanici sosyal medyada su paylasimi yapti:
+"{statement}"
 
-Bu paylasima gelebilecek 5 farkli olumsuz/elestrel yorum uret. Her biri kisa olsun (1-2 cumle).
+Simdi bu paylasimin ICERIGINE ozel 5 farkli linc yorumu yaz. Yorumlar:
+- Paylasimda ne dedigini OKUMUS ve ona ozel saldiran insanlar olsun
+- Kullanicinin soyledigi seyin icindeki mantik hatalarini, celiskileri, zayif noktalarini bulsunlar
+- Kisisel olsun — "sen kimsin ki bunu diyorsun" tarzi
+- Bazi yorumlar hakli gibi gorunen ama aslinda kirici olsun
+- Bazilari direkt saldirgan olsun
+- Her yorum 1-2 cumle, turkce, gunluk konusma dili
 
-Sosyal medyada insanlar:
-- Alakasiz detaylardan yola cikarak elestirir
-- Mantikisiz baglantilar kurar
-- Kisisel elestirilerde bulunur
-- Yazim hatalarini bahane eder
-- Tamamen konuyla alakasiz elestiriler yapar
+ONEMLI: Genel/generic yorumlar YAZMA. Her yorum direkt bu paylasimin icerigiyle ilgili olmali.
 
-SADECE JSON dondur, baska hicbir sey yazma:
-{{"yorumlar": [{{"id": 1, "text": "elestiri 1"}}, {{"id": 2, "text": "elestiri 2"}}, {{"id": 3, "text": "elestiri 3"}}, {{"id": 4, "text": "elestiri 4"}}, {{"id": 5, "text": "elestiri 5"}}]}}
-
-Yorumlar Twitter, Reddit, Eksi Sozluk'teki gercek davranislari yansitsin. Turkce yaz, gunluk konusma diliyle."""
+SADECE JSON dondur:
+{{"yorumlar": [{{"id": 1, "text": "yorum"}}, {{"id": 2, "text": "yorum"}}, {{"id": 3, "text": "yorum"}}, {{"id": 4, "text": "yorum"}}, {{"id": 5, "text": "yorum"}}]}}"""
 
             response_text = groq_chat(prompt, max_tokens=600)
             result = extract_json(response_text)
